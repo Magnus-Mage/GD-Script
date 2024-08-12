@@ -101,9 +101,11 @@
 
 extends CharacterBody2D
 
-const SPEED = 120.0
+var SPEED = 120.0
 const JUMP_VELOCITY = -300.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var friction = 1.0  # Default friction value
+var on_ice = false  # Track whether the player is on ice
 
 var can_double_jump = false
 
@@ -122,8 +124,6 @@ func _physics_process(delta):
 			if $AnimatedSprite2D.animation != "roll":
 				$AnimatedSprite2D.play("roll")
 			can_double_jump = false  # Disable further jumps until back on the ground
-		
-		
 
 	# Handle horizontal movement
 	var direction = Input.get_axis("a_key", "d_key")
@@ -139,12 +139,16 @@ func _physics_process(delta):
 		# Adjust the flip direction of the sprite based on movement
 		$AnimatedSprite2D.flip_h = direction < 0
 	else:
+		if on_ice:
+			# Reduce velocity more slowly when on ice
+			velocity.x = move_toward(velocity.x, 0, SPEED * friction * delta)
+		else:
+			# Normal deceleration on regular ground
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+
 		# Only play the idle animation if it is not already playing
 		if $AnimatedSprite2D.animation != "idle":
 			$AnimatedSprite2D.play("idle")
-		
-		# Gradually reduce velocity to 0 when not moving
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# Move the character
 	move_and_slide()
