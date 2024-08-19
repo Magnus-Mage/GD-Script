@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbvhgvrefa186"]
+[gd_scene load_steps=15 format=3 uid="uid://cbvhgvrefa186"]
 
 [ext_resource type="PackedScene" uid="uid://bgdq6jdf242l4" path="res://scenes/player.tscn" id="1_bvdu1"]
 [ext_resource type="Texture2D" uid="uid://cjy73kxf2wxv3" path="res://assets/sprites/world_tileset.png" id="2_2gy04"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_grbg2"]
 [ext_resource type="PackedScene" uid="uid://v72b5o1mw4dt" path="res://scenes/platform.tscn" id="3_ljxwi"]
 [ext_resource type="PackedScene" uid="uid://c7u6a1v7aagw0" path="res://scenes/coin.tscn" id="4_82hjs"]
 [ext_resource type="PackedScene" uid="uid://buoi47o1184nu" path="res://scenes/ice_surface.tscn" id="5_tborj"]
@@ -466,6 +467,10 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_grbg2")
 
 [node name="Coins" type="Node" parent="."]
 

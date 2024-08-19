@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuw1fkrcskb0k"]
+
+[ext_resource type="Script" path="res://Scripts/mob.gd" id="1_1nnld"]
+[ext_resource type="PackedScene" uid="uid://c7kemagueuls3" path="res://Scenes/Slime.tscn" id="1_rdpnb"]
+
+[node name="Mob" type="Node2D"]
+script = ExtResource("1_1nnld")
+
+[node name="Slime" parent="." instance=ExtResource("1_rdpnb")]
